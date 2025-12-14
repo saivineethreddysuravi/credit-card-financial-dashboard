@@ -1,51 +1,66 @@
 # Credit Card Financial Dashboard 💳
 
-A comprehensive financial dashboard providing real-time insights into credit card operations, customer demographics, and transaction trends using SQL and PowerBI.
+A full-stack data analytics project that simulates an end-to-end business intelligence pipeline. It handles "messy" raw data, processes it through a SQL-based ETL pipeline, and visualizes the results in Power BI.
 
-## 📊 Project Overview
+## 📊 Project Architecture (The "Full Stack" Flow)
 
-**Objective:** To develop a weekly credit card dashboard that provides real-time insights into key performance metrics and trends, enabling stakeholders to monitor operations effectively.
+This project demonstrates the complete lifecycle of data, "from messy CSVs to actionable dashboard":
 
-**Business Goal:** Streamline data processing and visualization to support decision-making regarding customer acquisition, revenue growth, and risk management.
+1.  **Raw Data Layer (Messy):**
+    *   Input: `data/*.csv` files containing unformatted dates, inconsistent strings (e.g., "Selfemployeed"), and mixed types.
+    *   Simulation: These represent raw extracts from a legacy banking system.
+2.  **Staging Layer (Ingestion):**
+    *   Tool: **PostgreSQL**.
+    *   Action: Raw data is loaded into `staging_` tables as `VARCHAR` text to prevent load errors.
+3.  **Transformation Layer (Cleaning):**
+    *   Tool: **SQL (ETL)**.
+    *   Logic:
+        *   **Date Parsing:** Converting 'DD-MM-YYYY' strings to proper SQL `DATE` objects.
+        *   **Typo Fixing:** Correcting "Selfemployeed" to "Self-Employed", Trimming whitespace from "Chip ".
+        *   **Type Casting:** Converting 'yes'/'no' fields to `BOOLEAN`, strings to `DECIMAL`.
+        *   **Standardization:** Mapping NULLs or 'Unknown' values.
+4.  **Production Layer (Gold):**
+    *   Output: Clean, optimized tables (`dim_customer`, `fact_credit_card_metrics`) ready for high-performance querying.
+5.  **Visualization Layer:**
+    *   Tool: **Power BI**.
+    *   Action: Connects to the Production Layer to render the dashboard.
 
 ## 💡 Key Metrics & Insights
 
-- **Revenue Analysis:** Tracked quarterly revenue and total transaction volume, identifying Q4 as the peak season.
-- **Customer Segmentation:** Analyzed customer demographics (Age, Income, Job) to identify high-value segments (e.g., Businessmen and Blue-collar workers).
-- **Card Performance:** compared Blue, Silver, Gold, and Platinum cards; identified 'Blue' cards as contributing the highest transaction volume.
-- **Delinquency Risk:** Monitored activation rates and delinquent account percentages to assess credit risk.
+-   **Revenue Analysis:** Tracked quarterly revenue and total transaction volume, identifying Q4 as the peak season.
+-   **Customer Segmentation:** Analyzed demographics to identify high-value segments (e.g., Businessmen).
+-   **Card Performance:** Identified 'Blue' cards as the volume leader.
+-   **Risk:** Monitored delinquency rates via the `is_delinquent` flag derived in the ETL process.
 
 ## 🛠️ Tools & Technologies
 
-- **PostgreSQL:** Database for storing and querying 10,000+ transaction and customer records.
-- **Power BI / Tableau:** Visualization tool for creating interactive dashboards (PDF reports included in `docs/`).
-- **DAX:** Used for calculating custom measures like 'Week-over-Week Revenue Growth'.
-- **CSV/Excel:** Initial data sources.
+-   **Database:** PostgreSQL (Staging -> Production architecture).
+-   **ETL:** SQL Stored Procedures / Scripts for data cleaning.
+-   **Visualization:** Power BI / Tableau.
+-   **Language:** SQL (Advanced DDL/DML), DAX.
 
 ## 📂 Project Structure
 
 ```
 credit-card-financial-dashboard/
-├── README.md               # Project documentation
-├── data/                   # Raw CSV data files (Customer & Transaction data)
-├── docs/                   # PDF exports of the final dashboard
-└── sql/                    # SQL scripts for data import and transformation
+├── data/
+│   ├── credit_card.csv       # Raw Transaction Data (Messy)
+│   └── customer.csv          # Raw Customer Data (Messy)
+├── docs/                     # PDF Dashboard Exports
+├── sql/
+│   └── financial_dashboard_schema.sql  # The COMPLETE Pipeline (DDL + Transformation Logic)
+└── README.md
 ```
 
-## 🔄 Data Pipeline
+## 🚀 How to Run the Pipeline
 
-1.  **Data Ingestion:** Raw CSV data (`credit_card.csv`, `customer.csv`) imported into SQL database.
-2.  **Data Cleaning:** SQL queries used to filter nulls, format dates, and categorize transaction types.
-3.  **Visualization:** Connected BI tool to SQL database to build reports.
-4.  **Updates:** Weekly CSV updates (`cc_add.csv`, `cust_add.csv`) processed to refresh the dashboard.
-
-## 🚀 How to Use
-
-1.  **View Reports:** Check the `docs/` folder for PDF versions of the dashboard.
-2.  **Data Analysis:** Import the CSV files from `data/` into your preferred SQL tool using the schema in `sql/`.
-3.  **Reproduction:** Load the data into PowerBI/Tableau to recreate the visualizations based on the fields provided.
-
-## 📌 Future Enhancements
-
--   Automate the weekly data import process using Python/Airflow.
--   Add predictive analytics to forecast next month's revenue.
+1.  **Setup Database:**
+    *   Create a PostgreSQL database named `credit_card_db`.
+2.  **Execute SQL Pipeline:**
+    *   Run the script `sql/financial_dashboard_schema.sql`.
+    *   *Note:* You will need to uncomment the `COPY` commands in the script and provide the absolute path to the `data/` CSV files on your machine.
+3.  **Connect Power BI:**
+    *   Connect Power BI to the `credit_card_db`.
+    *   Import tables `dim_customer` and `fact_credit_card_metrics`.
+4.  **Refresh:**
+    *   The dashboard will now reflect the clean, transformed data.
