@@ -1,0 +1,11 @@
+# Data
+data/
+*.csv
+*.xlsx
+
+# System
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
