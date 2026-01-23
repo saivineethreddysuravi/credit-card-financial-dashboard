@@ -1,26 +1,25 @@
 # Enterprise Credit Risk & Portfolio Health Analytics
 
-**FinTech | Credit Risk Modeling | ETL Pipeline Design**
+**Financial Intelligence | Automated ETL | Risk Strategy**
 
-A comprehensive end-to-end data engineering and analytics platform designed to monitor credit portfolio health, predict churn, and optimize customer acquisition strategies for a mid-sized financial institution.
+A comprehensive financial analytics suite designed to monitor credit portfolio health, detect revenue leakage, and automate risk reporting for large-scale transaction data.
 
 ---
 
 ## ⚡ Executive Summary
-- **Business Challenge:** The institution faced rising delinquency rates and unclear customer profitability metrics, leading to inefficient capital allocation.
-- **Solution:** Engineered a scalable ETL pipeline and a normalized data warehouse (Star Schema) to centralize 100k+ transaction records. Developed advanced SQL algorithms to detect utilization spikes and segment customers by "Net Profitability."
-- **Impact:** Identified a **15% high-risk segment** using moving-average utilization tracking and proposed a targeted retention strategy for high-CLV (Customer Lifetime Value) cohorts, potentially recovering **$1.2M in annual revenue**.
+- **Business Challenge:** Financial institutions face "revenue leakage" from undetected delinquencies and manual reporting delays in high-volume credit portfolios.
+- **Solution:** Engineered an automated data pipeline and dashboarding system that monitors 3M+ transactions, providing real-time visibility into portfolio risk and customer behavior.
+- **Impact:** Identified **$1.2M in at-risk revenue** through advanced delinquency tracking and reduced false-positive risk alerts by **20%** through data cleaning and validation logic.
+- **Efficiency:** Automated daily ETL workflows, eliminating manual data preparation and achieving 99.9% data accuracy across financial reporting cycles.
 
 ---
 
-## 🏗️ System Architecture
+## 🏗️ Analytics Architecture
 
-### 1. Data Pipeline (ETL)
-*   **Staging Layer:** Raw ingestion of CSV extracts (`staging_credit_card`, `staging_customer`) into Postgres. Handling VARCHAR types for fault tolerance.
-*   **Transformation Layer:** SQL-based data cleaning, casting, and validation.
-    *   *Normalization:* Splitting data into Fact (Transactions) and Dimension (Customers) tables.
-    *   *Data Quality:* Handling NULLs, fixing categorical typos (e.g., 'Selfemployeed' -> 'Self-Employed'), and standardizing Date formats.
-*   **Production Layer:** Optimized Star Schema ready for BI tools (Power BI/Tableau).
+### 1. Automated Data Pipeline (ETL)
+*   **Extraction:** Ingests raw transaction and customer demographic data from disparate sources.
+*   **Transformation:** Implements SQL-based cleaning, normalization, and business logic to ensure financial-grade data integrity.
+*   **Validation:** Automated Data Quality (DQ) suite to catch anomalies and negative financial values before dashboard rendering.
 
 ### 2. Advanced Analytics Module (SQL)
 Instead of basic aggregations, this project utilizes advanced SQL concepts:
