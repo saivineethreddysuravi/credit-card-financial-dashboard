@@ -59,7 +59,7 @@ Instead of basic aggregations, this project utilizes advanced SQL concepts:
 │   ├── financial_dashboard_schema.sql  # DDL: Staging & Production Schema Setup
 │   └── advanced_analytics.sql          # Advanced SQL: Cohorts, Risk Algorithms, CLV
 ├── data/                               # Sample Datasets (Sanitized)
-├── docs/                               # Architecture Diagrams & Data Dictionary
+├── docs/                               # Architecture Diagrams & Data Dictionary (See [DATA_DICTIONARY.md](docs/DATA_DICTIONARY.md))
 └── README.md                           # Project Documentation
 ```
 
