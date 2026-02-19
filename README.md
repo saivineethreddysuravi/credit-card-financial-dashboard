@@ -8,3 +8,7 @@ Snowflake, SQL, Power BI, Python, DAX, ETL Pipelines
 - Built a risk detection model on 3M+ transactions
 - Identified $1.2M at-risk revenue and reduced false positives by 20%
 - Automated daily risk pipelines with 99.9% data accuracy and zero manual intervention
+
+## Day 4: Visualization & Dashboarding
+- Implemented `visualization/portfolio_health_analysis.py` for tracking key risk trends.
+- Designed dashboard layouts for interactive risk monitoring.
