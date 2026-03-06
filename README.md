@@ -21,3 +21,8 @@ This repository demonstrates enterprise-grade credit risk monitoring and portfol
 
 ---
 [LinkedIn](https://www.linkedin.com/in/saivineethreddysuravi) | [GitHub](https://github.com/saivineethreddysuravi) | [Portfolio](https://vineeeth.com)
+
+
+## CI/CD & Containerization
+- **Docker**: The project is containerized for production consistency. Use `docker build -t credit-risk-analytics .` to build.
+- **GitHub Actions**: Automated CI pipeline runs tests on every push to `main` or `master` to ensure code integrity.
