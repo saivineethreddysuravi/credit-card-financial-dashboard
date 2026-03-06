@@ -26,3 +26,6 @@ This repository demonstrates enterprise-grade credit risk monitoring and portfol
 ## CI/CD & Containerization
 - **Docker**: The project is containerized for production consistency. Use `docker build -t credit-risk-analytics .` to build.
 - **GitHub Actions**: Automated CI pipeline runs tests on every push to `main` or `master` to ensure code integrity.
+
+## Infrastructure as Code (IaC)
+- **Terraform**: The `terraform/` directory contains the declarative infrastructure for an AWS S3 Data Lake and IAM roles for secure Snowflake integration.
