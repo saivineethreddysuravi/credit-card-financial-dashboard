@@ -29,3 +29,8 @@ This repository demonstrates enterprise-grade credit risk monitoring and portfol
 
 ## Infrastructure as Code (IaC)
 - **Terraform**: The `terraform/` directory contains the declarative infrastructure for an AWS S3 Data Lake and IAM roles for secure Snowflake integration.
+
+## Day 11: Multimodal Risk Intelligence
+- **Multimodal Intelligence**: Integrated `gemini-embedding-2-preview` to analyze multimodal transaction data (Text, Audio, Image).
+- **Fraud Detection**: Leverages dense vector representations of merchant interaction logs and receipt images to identify non-obvious patterns of capital-at-risk.
+- **Dispute Sentiment**: Analyzes customer service audio logs to predict credit dispute likelihood before formal filings.
