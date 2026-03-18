@@ -1,0 +1,10 @@
+-- Snowflake Masking Policy for Credit Card Numbers
+CREATE OR REPLACE MASKING POLICY cc_mask AS (val STRING) 
+RETURNS STRING ->
+  CASE
+    WHEN CURRENT_ROLE() IN ('RISK_ADMIN', 'GOVERNANCE_OFFICER') THEN val
+    ELSE '****-****-****-' || RIGHT(val, 4)
+  END;
+
+-- Apply to transaction tables
+ALTER TABLE TRANSFORMED_TRANSACTIONS MODIFY COLUMN CREDIT_CARD_NUMBER SET MASKING POLICY cc_mask;
